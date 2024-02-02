@@ -17,7 +17,7 @@ export default function SplitForm({ selectedFriend }) {
       <label>🤑 Who is paying the bill?</label>
       <select>
         <option value="You">You</option>
-        <option value="Clark">Clark</option>
+        <option value="Friend">{selectedFriend.name}</option>
       </select>
 
       <Button>Split Bill</Button>

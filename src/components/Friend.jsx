@@ -4,6 +4,7 @@ export default function Friend({
   friend,
   onSetSelectedFriend,
   selectedFriend,
+  onSetIsFriendOpen,
 }) {
   function handleClick() {
     if (selectedFriend === friend) {
@@ -11,6 +12,7 @@ export default function Friend({
     } else {
       onSetSelectedFriend(friend);
     }
+    onSetIsFriendOpen(false);
   }
   return (
     <li className={selectedFriend === friend ? 'selected' : ''}>

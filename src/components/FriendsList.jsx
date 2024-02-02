@@ -4,6 +4,7 @@ export default function FriendsList({
   friends,
   onSetSelectedFriend,
   selectedFriend,
+  onSetIsFriendOpen,
 }) {
   return (
     <>
@@ -14,6 +15,7 @@ export default function FriendsList({
             key={friend.id}
             onSetSelectedFriend={onSetSelectedFriend}
             selectedFriend={selectedFriend}
+            onSetIsFriendOpen={onSetIsFriendOpen}
           />
         ))}
       </ul>

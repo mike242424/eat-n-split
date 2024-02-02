@@ -38,13 +38,16 @@ export default function App() {
           onSetFriends={setFriends}
           onSetSelectedFriend={setSelectedFriend}
           selectedFriend={selectedFriend}
+          onSetIsFriendOpen={setIsFriendOpen}
         />
+
         {isFriendOpen && (
           <AddFriendFrom
             onSetFriends={setFriends}
             onSetIsFriendOpen={setIsFriendOpen}
           />
         )}
+
         <Button
           onClick={() => setIsFriendOpen((prevFriendOpen) => !prevFriendOpen)}
         >

@@ -14,6 +14,8 @@ export default function SplitForm({
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (!bill || myExpense < 0) return;
+
     if (billPayer === 'You') {
       onSetFriends(
         friends.map((friend) => {
@@ -22,8 +24,8 @@ export default function SplitForm({
               ...friend,
               balance:
                 myExpense > friend.balance
-                  ? myExpense - friend.balance
-                  : friend.balance - myExpense,
+                  ? bill - myExpense + friend.balance
+                  : friend.balance + (bill - myExpense),
             };
           } else {
             return friend;
@@ -35,7 +37,7 @@ export default function SplitForm({
       onSetFriends(
         friends.map((friend) => {
           if (friend === selectedFriend) {
-            return { ...friend, balance: friend.balance - (bill - myExpense) };
+            return { ...friend, balance: friend.balance - myExpense };
           } else {
             return friend;
           }
@@ -43,8 +45,6 @@ export default function SplitForm({
       );
       onSetSelectedFriend(null);
     }
-    console.log('bill', bill);
-    console.log('payer', billPayer);
   }
 
   return (
@@ -62,11 +62,15 @@ export default function SplitForm({
       <input
         type="text"
         value={myExpense}
-        onChange={(e) => setMyExpense(Number(e.target.value))}
+        onChange={(e) =>
+          setMyExpense(
+            Number(e.target.value) > bill ? myExpense : Number(e.target.value),
+          )
+        }
       />
 
       <label>👨🏻‍🤝‍👨🏾 {selectedFriend.name}'s expense:</label>
-      <input type="text" disabled value={bill - myExpense} />
+      <input type="text" disabled value={bill ? bill - myExpense : ''} />
 
       <label>🤑 Who is paying the bill?</label>
       <select value={billPayer} onChange={(e) => setBillPayer(e.target.value)}>

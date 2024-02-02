@@ -1,10 +1,6 @@
-import { useState } from 'react';
-import AddFriendFrom from './AddFriendForm';
 import Friend from './Friend';
-import Button from './Button';
 
-export default function FriendsList({ friends }) {
-  const [isFriendOpen, setIsFriendOpen] = useState(false);
+export default function FriendsList({ friends, onSetFriends }) {
   return (
     <>
       <ul>
@@ -12,14 +8,6 @@ export default function FriendsList({ friends }) {
           <Friend friend={friend} key={friend.id} />
         ))}
       </ul>
-      {isFriendOpen ? <AddFriendFrom /> : null}
-
-      <Button
-        onClick={() => setIsFriendOpen((prevFriendOpen) => !prevFriendOpen)}
-        className="button"
-      >
-        {isFriendOpen ? 'Close' : 'Add Friend'}
-      </Button>
     </>
   );
 }

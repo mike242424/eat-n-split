@@ -1,8 +1,19 @@
 import Button from './Button';
 
-export default function Friend({ friend }) {
+export default function Friend({
+  friend,
+  onSetSelectedFriend,
+  selectedFriend,
+}) {
+  function handleClick() {
+    if (selectedFriend === friend) {
+      onSetSelectedFriend(null);
+    } else {
+      onSetSelectedFriend(friend);
+    }
+  }
   return (
-    <li>
+    <li className={selectedFriend === friend ? 'selected' : ''}>
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
 
@@ -18,7 +29,9 @@ export default function Friend({ friend }) {
         </p>
       )}
 
-      <Button>Select</Button>
+      <Button onClick={handleClick}>
+        {selectedFriend === friend ? 'Back' : 'Select'}
+      </Button>
     </li>
   );
 }

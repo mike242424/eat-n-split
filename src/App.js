@@ -33,7 +33,12 @@ export default function App() {
     <div className="app">
       <div className="sidebar">
         <FriendsList friends={friends} onSetFriends={setFriends} />
-        {isFriendOpen && <AddFriendFrom onSetFriends={setFriends} />}
+        {isFriendOpen && (
+          <AddFriendFrom
+            onSetFriends={setFriends}
+            onSetIsFriendOpen={setIsFriendOpen}
+          />
+        )}
         <Button
           onClick={() => setIsFriendOpen((prevFriendOpen) => !prevFriendOpen)}
         >

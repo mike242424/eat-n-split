@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Button from './Button';
 
-export default function AddFriendFrom({ onSetFriends }) {
+export default function AddFriendFrom({ onSetFriends, onSetIsFriendOpen }) {
   const [name, setName] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState('https://i.pravatar.cc/48');
+  const id = Math.floor(Math.random() * 100000);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -12,11 +13,12 @@ export default function AddFriendFrom({ onSetFriends }) {
 
     onSetFriends((prevFriends) => [
       ...prevFriends,
-      { id: Math.floor(Math.random() * 100000), name, image, balance: 0 },
+      { id, name, image: `${image}?u=${id}`, balance: 0 },
     ]);
 
     setName('');
-    setImage('');
+    setImage('https://i.pravatar.cc/48');
+    onSetIsFriendOpen(false);
   }
   return (
     <form className="form-add-friend" onSubmit={handleSubmit}>

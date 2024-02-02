@@ -28,11 +28,17 @@ const initialFriends = [
 export default function App() {
   const [friends, setFriends] = useState(initialFriends);
   const [isFriendOpen, setIsFriendOpen] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends} onSetFriends={setFriends} />
+        <FriendsList
+          friends={friends}
+          onSetFriends={setFriends}
+          onSetSelectedFriend={setSelectedFriend}
+          selectedFriend={selectedFriend}
+        />
         {isFriendOpen && (
           <AddFriendFrom
             onSetFriends={setFriends}
@@ -45,7 +51,7 @@ export default function App() {
           {isFriendOpen ? 'Close' : 'Add Friend'}
         </Button>
       </div>
-      <SplitForm />
+      {selectedFriend && <SplitForm selectedFriend={selectedFriend} />}
     </div>
   );
 }

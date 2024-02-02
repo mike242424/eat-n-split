@@ -54,7 +54,14 @@ export default function App() {
           {isFriendOpen ? 'Close' : 'Add Friend'}
         </Button>
       </div>
-      {selectedFriend && <SplitForm selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <SplitForm
+          selectedFriend={selectedFriend}
+          onSetFriends={setFriends}
+          friends={friends}
+          onSetSelectedFriend={setSelectedFriend}
+        />
+      )}
     </div>
   );
 }

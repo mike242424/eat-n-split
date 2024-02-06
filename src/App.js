@@ -56,6 +56,7 @@ export default function App() {
       </div>
       {selectedFriend && (
         <SplitForm
+          key={Math.random()}
           selectedFriend={selectedFriend}
           onSetFriends={setFriends}
           friends={friends}
